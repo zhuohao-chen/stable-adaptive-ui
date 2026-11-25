@@ -12,18 +12,24 @@
 from __future__ import annotations
 
 import gc
-import resource
 import statistics
 import sys
 import time
 import tracemalloc
 
+try:  # Unix only; on Windows the RSS column is reported as NaN.
+    import resource
+except ImportError:  # pragma: no cover - platform dependent
+    resource = None
+
 from stableui.problem import Instance, Solution
 from stableui.solvers import Solver
 
 
-def _max_rss_bytes() -> int:
-    """Peak resident set size of this process in bytes."""
+def _max_rss_bytes() -> float:
+    """Peak resident set size of this process in bytes (NaN where unavailable)."""
+    if resource is None:
+        return float("nan")
     rss = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
     return rss if sys.platform == "darwin" else rss * 1024
 
@@ -60,7 +66,8 @@ def measure(
         if budget is not None and times[-1] > budget:
             track_memory = False
             break
-    rss_growth = max(0, _max_rss_bytes() - rss_before)
+    rss_growth = _max_rss_bytes() - rss_before
+    rss_growth = max(0.0, rss_growth) if rss_growth == rss_growth else rss_growth
 
     peak = float("nan")
     if track_memory:
