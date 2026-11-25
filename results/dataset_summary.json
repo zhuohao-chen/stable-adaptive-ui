@@ -1,0 +1,51 @@
+{
+  "users": 291,
+  "apps": 87,
+  "launches": 305287,
+  "first": "2017-09-09 17:17:41",
+  "last": "2018-05-17 08:42:28",
+  "per_user": {
+    "launches": {
+      "count": 291.0,
+      "mean": 1049.1,
+      "std": 2077.37,
+      "min": 1.0,
+      "25%": 123.0,
+      "50%": 330.0,
+      "75%": 953.5,
+      "max": 17419.0
+    },
+    "apps": {
+      "count": 291.0,
+      "mean": 15.27,
+      "std": 6.27,
+      "min": 1.0,
+      "25%": 11.0,
+      "50%": 16.0,
+      "75%": 20.0,
+      "max": 31.0
+    },
+    "span_days": {
+      "count": 291.0,
+      "mean": 16.66,
+      "std": 27.83,
+      "min": 1.0,
+      "25%": 3.0,
+      "50%": 6.0,
+      "75%": 17.0,
+      "max": 211.0
+    }
+  },
+  "top_apps": {
+    "Google Chrome": 37231,
+    "Facebook": 27637,
+    "Google": 24094,
+    "Facebook Messenger": 17352,
+    "Messages": 15130,
+    "Instagram": 13451,
+    "Gmail": 10946,
+    "Telegram": 10200,
+    "Contacts": 10058,
+    "Verizon Messages": 7966
+  }
+}
